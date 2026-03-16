@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/Gallery.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const images = [
+  { src: `${base}/images/events/SL_A9_06976.jpg`, alt: '' },
+  { src: `${base}/images/events/3X5A9113.jpg`, alt: '' },
+  { src: `${base}/images/events/SLB01847.jpg`, alt: '' },
+  { src: `${base}/images/events/SLB02565.jpg`, alt: '' },
+  { src: `${base}/images/events/SLB02647.jpg`, alt: '' },
+  { src: `${base}/images/events/SL_02654.jpg`, alt: '' },
+  { src: `${base}/images/events/SL_06481.jpg`, alt: '' },
+  { src: `${base}/images/events/SL_07034.jpg`, alt: '' },
+  { src: `${base}/images/events/SL_07073.jpg`, alt: '' },
+  { src: `${base}/images/events/SL_A9_07123.jpg`, alt: '' },
+  { src: `${base}/images/events/SL_A9_07193.jpg`, alt: '' },
+];
+---
+
+<Layout title="Events">
+  <div class="max-w-7xl mx-auto px-6 pt-10 pb-4">
+    <h1 class="text-xs tracking-[0.4em] uppercase text-white/30">Events</h1>
+  </div>
+  <Gallery images={images} title="Events" />
+  <Lightbox />
+</Layout>

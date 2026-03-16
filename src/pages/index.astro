@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const categories = [
+  {
+    label: 'Portrait',
+    href: `${base}/portrait`,
+    cover: `${base}/images/portrait/SLB09033.jpg`,
+  },
+  {
+    label: 'Events',
+    href: `${base}/events`,
+    cover: `${base}/images/events/SL_A9_06976.jpg`,
+  },
+  {
+    label: 'Personal',
+    href: `${base}/personal`,
+    cover: `${base}/images/personal/3X5A2756.jpg`,
+  },
+  {
+    label: 'Sports',
+    href: `${base}/sports`,
+    cover: `${base}/images/sports/SL_03598.jpg`,
+  },
+  {
+    label: 'Motorsport',
+    href: `${base}/motorsport`,
+    cover: `${base}/images/motorsport/SLA00905.jpg`,
+  },
+  {
+    label: 'Street',
+    href: `${base}/street`,
+    cover: `${base}/images/street/SL_06628.jpg`,
+  },
+];
+---
+
+<Layout title="Portfolio">
+  <!-- Hero brand -->
+  <section class="px-6 py-16 text-center">
+    <h1 class="text-xs tracking-[0.4em] uppercase text-white/40 mb-3">Photography by</h1>
+    <p class="text-3xl md:text-4xl font-light tracking-[0.3em] uppercase text-white">STANLEYLVISUAL</p>
+  </section>
+
+  <!-- Category grid -->
+  <section class="max-w-7xl mx-auto px-4 pb-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1">
+      {categories.map((cat) => (
+        <a
+          href={cat.href}
+          class="group relative overflow-hidden aspect-[4/3] bg-zinc-900 block"
+        >
+          <img
+            src={cat.cover}
+            alt={cat.label}
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            onerror="this.style.display='none'"
+          />
+          <!-- Overlay -->
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
+          <!-- Label -->
+          <div class="absolute inset-0 flex items-end p-6">
+            <h2 class="text-white text-lg font-light tracking-[0.2em] uppercase opacity-80 group-hover:opacity-100 transition-opacity">
+              {cat.label}
+            </h2>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

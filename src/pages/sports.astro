@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/Gallery.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const images = [
+  { src: `${base}/images/sports/SL_03598.jpg`, alt: '' },
+  { src: `${base}/images/sports/2019 FIVB Volleyball Nations League — Hong Kong.jpg`, alt: '2019 FIVB Volleyball Nations League — Hong Kong' },
+  { src: `${base}/images/sports/3X5A6289.jpg`, alt: '' },
+  { src: `${base}/images/sports/3X5A9397.jpg`, alt: '' },
+  { src: `${base}/images/sports/4d19f3_1da05b737ee146bd813d14b53d2485b3~mv2.webp`, alt: '' },
+  { src: `${base}/images/sports/5CY00452.jpg`, alt: '' },
+  { src: `${base}/images/sports/Charles Cheung - Former Hong Kong Rugby Team.jpg`, alt: 'Charles Cheung - Former Hong Kong Rugby Team' },
+  { src: `${base}/images/sports/IMG_0051.jpg`, alt: '' },
+  { src: `${base}/images/sports/IMG_1654.jpg`, alt: '' },
+  { src: `${base}/images/sports/IMG_3046.jpg`, alt: '' },
+  { src: `${base}/images/sports/Mark Yu - Triathlon HK squad.jpg`, alt: 'Mark Yu - Triathlon HK squad' },
+  { src: `${base}/images/sports/Muay Thai.jpg`, alt: 'Muay Thai' },
+  { src: `${base}/images/sports/SLA08536.jpg`, alt: '' },
+  { src: `${base}/images/sports/SLA09655-Enhanced-NR.jpg`, alt: '' },
+  { src: `${base}/images/sports/SL_00711.jpg`, alt: '' },
+  { src: `${base}/images/sports/SL_00852.jpg`, alt: '' },
+  { src: `${base}/images/sports/SL_03220.jpg`, alt: '' },
+  { src: `${base}/images/sports/SL_03631.jpg`, alt: '' },
+  { src: `${base}/images/sports/SL_03757.jpg`, alt: '' },
+  { src: `${base}/images/sports/SL_05501.jpg`, alt: '' },
+  { src: `${base}/images/sports/SL_05964.jpg`, alt: '' },
+  { src: `${base}/images/sports/SL_06157.jpg`, alt: '' },
+  { src: `${base}/images/sports/SL_06254.jpg`, alt: '' },
+  { src: `${base}/images/sports/SL_07155.jpg`, alt: '' },
+  { src: `${base}/images/sports/SL_07253.jpg`, alt: '' },
+  { src: `${base}/images/sports/SL_09735.jpg`, alt: '' },
+  { src: `${base}/images/sports/Seamaster 2018 ITTF World Tour, Hang Seng Hong Kong Open.jpg`, alt: 'Seamaster 2018 ITTF World Tour, Hang Seng Hong Kong Open' },
+  { src: `${base}/images/sports/Tom Evans - Red Bull Ultrarunner.jpg`, alt: 'Tom Evans - Red Bull Ultrarunner' },
+  { src: `${base}/images/sports/UCI Hong Kong Station 2019.jpg`, alt: 'UCI Hong Kong Station 2019' },
+  { src: `${base}/images/sports/Viktor Axelson.jpg`, alt: 'Viktor Axelson' },
+  { src: `${base}/images/sports/_R3A9567.jpg`, alt: '' },
+  { src: `${base}/images/sports/c53dbe4c-fac3-4ab7-8fe2-888202c5f6d1.jpg`, alt: '' },
+];
+---
+
+<Layout title="Sports">
+  <div class="max-w-7xl mx-auto px-6 pt-10 pb-4">
+    <h1 class="text-xs tracking-[0.4em] uppercase text-white/30">Sports</h1>
+  </div>
+  <Gallery images={images} title="Sports" />
+  <Lightbox />
+</Layout>

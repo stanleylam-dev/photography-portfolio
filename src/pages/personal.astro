@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/Gallery.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const images = [
+  { src: `${base}/images/personal/3X5A2756.jpg`, alt: '' },
+  { src: `${base}/images/personal/3X5A6350.jpg`, alt: '' },
+  { src: `${base}/images/personal/SLA00655.jpg`, alt: '' },
+  { src: `${base}/images/personal/SLA00998.jpg`, alt: '' },
+  { src: `${base}/images/personal/SLA01878.jpg`, alt: '' },
+  { src: `${base}/images/personal/SLA01891.jpg`, alt: '' },
+  { src: `${base}/images/personal/SLA01967.jpg`, alt: '' },
+  { src: `${base}/images/personal/SL_05798.jpg`, alt: '' },
+];
+---
+
+<Layout title="Personal">
+  <div class="max-w-7xl mx-auto px-6 pt-10 pb-4">
+    <h1 class="text-xs tracking-[0.4em] uppercase text-white/30">Personal</h1>
+  </div>
+  <Gallery images={images} title="Personal" />
+  <Lightbox />
+</Layout>

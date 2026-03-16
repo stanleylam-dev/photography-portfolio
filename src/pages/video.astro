@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+/**
+ * Add your YouTube or Vimeo video URLs below.
+ * For YouTube: use the embed URL format: https://www.youtube.com/embed/VIDEO_ID
+ * For Vimeo:   use the embed URL format: https://player.vimeo.com/video/VIDEO_ID
+ *
+ * Example:
+ *   { embedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: 'Behind the scenes' },
+ */
+const videos = [
+  // { embedUrl: 'https://www.youtube.com/embed/YOUR_VIDEO_ID', title: 'Video title here' },
+];
+---
+
+<Layout title="Video">
+  <div class="max-w-7xl mx-auto px-6 pt-10 pb-4">
+    <h1 class="text-xs tracking-[0.4em] uppercase text-white/30">Video</h1>
+  </div>
+
+  {videos.length === 0 ? (
+    <div class="max-w-7xl mx-auto px-6 py-32 text-center">
+      <p class="text-white/30 text-sm tracking-widest uppercase">No videos yet</p>
+      <p class="text-white/20 text-xs mt-2">Add your video embed URLs to <code class="font-mono">src/pages/video.astro</code></p>
+    </div>
+  ) : (
+    <div class="max-w-7xl mx-auto px-4 pb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {videos.map((video) => (
+          <div class="relative aspect-video bg-zinc-900">
+            <iframe
+              src={video.embedUrl}
+              title={video.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              class="absolute inset-0 w-full h-full"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</Layout>

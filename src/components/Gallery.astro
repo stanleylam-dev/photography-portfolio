@@ -1,0 +1,64 @@
+---
+interface Image {
+  src: string;
+  alt?: string;
+}
+
+interface Props {
+  images: Image[];
+  title: string;
+}
+
+const { images, title } = Astro.props;
+---
+
+{images.length === 0 ? (
+  <div class="max-w-7xl mx-auto px-6 py-32 text-center">
+    <p class="text-white/30 text-sm tracking-widest uppercase">No images yet</p>
+    <p class="text-white/20 text-xs mt-2">Add your photos to <code class="font-mono">public/images/{title.toLowerCase()}/</code></p>
+  </div>
+) : (
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <div class="masonry" id="gallery-grid">
+      {images.map((image, i) => (
+        <button
+          class="masonry-item group cursor-zoom-in focus:outline-none"
+          data-index={i}
+          aria-label={image.alt || `${title} photo ${i + 1}`}
+        >
+          <img
+            src={image.src}
+            alt={image.alt || `${title} ${i + 1}`}
+            loading="lazy"
+            decoding="async"
+            class="w-full h-auto block transition-all duration-300 group-hover:brightness-75"
+          />
+        </button>
+      ))}
+    </div>
+  </div>
+)}
+
+<script define:vars={{ images, title }}>
+  const srcs = images.map((img) => img.src);
+  const alts = images.map((img, i) => img.alt || `${title} ${i + 1}`);
+
+  if (typeof window.initLightbox === 'function') {
+    window.initLightbox(srcs, alts);
+  } else {
+    window.addEventListener('load', () => {
+      if (typeof window.initLightbox === 'function') {
+        window.initLightbox(srcs, alts);
+      }
+    });
+  }
+
+  document.querySelectorAll('#gallery-grid button[data-index]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const index = parseInt(btn.getAttribute('data-index') || '0', 10);
+      if (typeof window.openLightbox === 'function') {
+        window.openLightbox(index);
+      }
+    });
+  });
+</script>

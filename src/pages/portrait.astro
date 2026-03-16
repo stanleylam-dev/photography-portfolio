@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/Gallery.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const images = [
+  { src: `${base}/images/portrait/SLB09033.jpg`, alt: '' },
+  { src: `${base}/images/portrait/3X5A1747.jpg`, alt: '' },
+  { src: `${base}/images/portrait/Italian legendary fencer - Valentina Vezzali.jpg`, alt: 'Italian legendary fencer - Valentina Vezzali' },
+  { src: `${base}/images/portrait/Ken Choi - Founder of X Game HK.jpg`, alt: 'Ken Choi - Founder of X Game HK' },
+  { src: `${base}/images/portrait/SLA01797.jpg`, alt: '' },
+  { src: `${base}/images/portrait/SLA01821.jpg`, alt: '' },
+  { src: `${base}/images/portrait/SLA01954.jpg`, alt: '' },
+  { src: `${base}/images/portrait/SLA07190.jpg`, alt: '' },
+  { src: `${base}/images/portrait/SLA07206.jpg`, alt: '' },
+  { src: `${base}/images/portrait/SL_00493.jpg`, alt: '' },
+  { src: `${base}/images/portrait/SL_09038-2.jpg`, alt: '' },
+  { src: `${base}/images/portrait/SL_09781 2.jpg`, alt: '' },
+  { src: `${base}/images/portrait/Stone Tsang - Hong Kong Trailrunner.jpg`, alt: 'Stone Tsang - Hong Kong Trailrunner' },
+  { src: `${base}/images/portrait/Wai Gum Chiu - Hong Kong Cold Swimmer.jpg`, alt: 'Wai Gum Chiu - Hong Kong Cold Swimmer' },
+  { src: `${base}/images/portrait/晉裕籃球隊.jpg`, alt: '' },
+];
+---
+
+<Layout title="Portrait">
+  <div class="max-w-7xl mx-auto px-6 pt-10 pb-4">
+    <h1 class="text-xs tracking-[0.4em] uppercase text-white/30">Portrait</h1>
+  </div>
+  <Gallery images={images} title="Portrait" />
+  <Lightbox />
+</Layout>

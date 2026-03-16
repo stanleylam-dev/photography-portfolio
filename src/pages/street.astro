@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/Gallery.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const images = [
+  { src: `${base}/images/street/SL_06628.jpg`, alt: '' },
+  { src: `${base}/images/street/DSC07575.jpg`, alt: '' },
+  { src: `${base}/images/street/DSC07636.jpg`, alt: '' },
+  { src: `${base}/images/street/DSC07675.jpg`, alt: '' },
+  { src: `${base}/images/street/DSC07832.jpg`, alt: '' },
+  { src: `${base}/images/street/SL_06307.jpg`, alt: '' },
+  { src: `${base}/images/street/SL_06587.jpg`, alt: '' },
+  { src: `${base}/images/street/SL_06677.jpg`, alt: '' },
+  { src: `${base}/images/street/SL_06875.jpg`, alt: '' },
+  { src: `${base}/images/street/SL_06946.jpg`, alt: '' },
+];
+---
+
+<Layout title="Street">
+  <div class="max-w-7xl mx-auto px-6 pt-10 pb-4">
+    <h1 class="text-xs tracking-[0.4em] uppercase text-white/30">Street</h1>
+  </div>
+  <Gallery images={images} title="Street" />
+  <Lightbox />
+</Layout>

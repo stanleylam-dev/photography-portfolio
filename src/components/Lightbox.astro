@@ -1,0 +1,106 @@
+---
+// Lightbox component — included once per page, driven by JS
+---
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <!-- Close -->
+  <button
+    id="lightbox-close"
+    aria-label="Close"
+    class="absolute top-5 right-5 text-white/60 hover:text-white transition-colors z-10"
+  >
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <!-- Prev -->
+  <button
+    id="lightbox-prev"
+    aria-label="Previous image"
+    class="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors z-10 p-2"
+  >
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <!-- Image -->
+  <img id="lightbox-img" src="" alt="" class="select-none" />
+
+  <!-- Counter -->
+  <p id="lightbox-counter" class="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/40 text-sm tabular-nums"></p>
+
+  <!-- Next -->
+  <button
+    id="lightbox-next"
+    aria-label="Next image"
+    class="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors z-10 p-2"
+  >
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+</div>
+
+<script>
+  let images: string[] = [];
+  let alts: string[] = [];
+  let currentIndex = 0;
+
+  const lightbox = document.getElementById('lightbox')!;
+  const img = document.getElementById('lightbox-img') as HTMLImageElement;
+  const counter = document.getElementById('lightbox-counter')!;
+
+  function open(index: number) {
+    currentIndex = index;
+    show();
+  }
+
+  function show() {
+    img.src = images[currentIndex];
+    img.alt = alts[currentIndex] || '';
+    counter.textContent = `${currentIndex + 1} / ${images.length}`;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    img.src = '';
+  }
+
+  function prev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    show();
+  }
+
+  function next() {
+    currentIndex = (currentIndex + 1) % images.length;
+    show();
+  }
+
+  document.getElementById('lightbox-close')?.addEventListener('click', close);
+  document.getElementById('lightbox-prev')?.addEventListener('click', prev);
+  document.getElementById('lightbox-next')?.addEventListener('click', next);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) close();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'ArrowRight') next();
+  });
+
+  // Public API for gallery pages to register their images
+  (window as any).initLightbox = (srcs: string[], altTexts: string[]) => {
+    images = srcs;
+    alts = altTexts;
+  };
+
+  (window as any).openLightbox = open;
+</script>
