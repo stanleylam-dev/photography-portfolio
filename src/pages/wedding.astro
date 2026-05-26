@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/Gallery.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const images = [
+  { src: `${base}/images/Wedding/SLB02257.jpg`, alt: '' },
+  { src: `${base}/images/Wedding/SLA02346.jpg`, alt: '' },
+  { src: `${base}/images/Wedding/SLA02378.jpg`, alt: '' },
+  { src: `${base}/images/Wedding/SLA02896.jpg`, alt: '' },
+  { src: `${base}/images/Wedding/SLA02919.jpg`, alt: '' },
+];
+---
+
+<Layout title="Wedding">
+  <div class="max-w-7xl mx-auto px-6 pt-10 pb-4">
+    <h1 class="text-xs tracking-[0.4em] uppercase text-white/30">Wedding</h1>
+  </div>
+  <Gallery images={images} title="Wedding" />
+  <Lightbox />
+</Layout>
