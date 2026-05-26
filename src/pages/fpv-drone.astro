@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+/**
+ * Playlist: https://www.youtube.com/playlist?list=PLrMM0CupyX0sjzzOG2QpDsYX4qBv-GFA1
+ * Format: { embedUrl: 'https://www.youtube.com/embed/VIDEO_ID', title: 'Your title' }
+ */
+const videos = [
+  { embedUrl: 'https://youtube.com/embed/o854OX2X2a0?feature=share', title: 'FPV Drone Showcase' },
+  { embedUrl: 'https://www.youtube.com/embed/NXz5lkwQ2u4', title: 'One-shot FPV 4K 穿越機 | 鞍山落日⎮One-shot Cinematic FPV 4K | Sunset Cruising at Ma On Shan' },
+  { embedUrl: 'https://www.youtube.com/embed/s7xeViq9t4I', title: '4K FPV 穿越機 | 圓頭山：山火過後⎮ Cinematic FPV 4K | Yuen Tau Shan: After the fire' },
+  { embedUrl: 'https://www.youtube.com/embed/Um3jgwLmVVk', title: 'One-shot Cinematic FPV 4K | The Chinese University of Hong Kong⎮一鏡到底 4K FPV穿越機 | 中大未圓湖' },
+  { embedUrl: 'https://www.youtube.com/embed/83VyuXMu4XE', title: 'Cinematic FPV 4K | Castle Peak - Hong Kong⎮FPV穿越機 | 香港青山腹地' },
+  { embedUrl: 'https://www.youtube.com/embed/wMg6askz4YU', title: 'One-shot Cinematic FPV 4K | Kowloon Walled City Park⎮一鏡到底FPV穿越機 | 九龍寨城公園' },
+];
+---
+
+<Layout title="FPV Drone">
+  <div class="max-w-7xl mx-auto px-6 pt-10 pb-4">
+    <h1 class="text-xs tracking-[0.4em] uppercase text-white/30">FPV Drone</h1>
+  </div>
+
+  {videos.length === 0 ? (
+    <div class="max-w-7xl mx-auto px-6 py-32 text-center">
+      <p class="text-white/30 text-sm tracking-widest uppercase">No videos yet</p>
+      <p class="text-white/20 text-xs mt-2">Add your video embed URLs to <code class="font-mono">src/pages/fpv-drone.astro</code></p>
+    </div>
+  ) : (
+    <div class="max-w-7xl mx-auto px-4 pb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {videos.map((video) => (
+          <div class="relative aspect-video bg-zinc-900">
+            <iframe
+              src={video.embedUrl}
+              title={video.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              class="absolute inset-0 w-full h-full"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</Layout>
